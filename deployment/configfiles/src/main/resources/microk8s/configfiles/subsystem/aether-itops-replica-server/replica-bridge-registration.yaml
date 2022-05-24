@@ -1,0 +1,16 @@
+# replica-bridge-registration.yaml
+id: "replica-server-integration-services"
+url: "http://10.123.123.52:20001"
+as_token: "JasperIsHere"
+hs_token: "SoIsClaude"
+sender_localpart: itops
+namespaces:
+  users: 
+    - exclusive: false
+      regex: ".*"
+  rooms:
+    - exclusive: false
+      regex: ".*" 
+  aliases: 
+    - exclusive: false
+      regex: ".*"

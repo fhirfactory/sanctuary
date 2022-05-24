@@ -1,0 +1,204 @@
+---
+subsystemInstant:
+  owningOrganizationName: "ACT Health"
+  solutionName: "AETHER"
+  solutionGroup: "au.gov.act.health.aether"
+  solutionDescription: "FHIRBREAK - email"
+  subsystemName: "aether-fhirbreak-email"
+  subsystemVersion: "1.5.0"
+  externalisedServiceName: "aether-fhirbreak-email"
+  externalisedServiceDNSName: "fhirbreak-email.sitea.aether.local"
+  externalisedServiceEndpointName: null
+  clusterServiceName: "aether-fhirbreak-email"
+  clusterServiceDNSName: "10.123.123.43"
+  processingPlantDNSName: "aether-fhirbreak-email"
+  processingPlantVersion: "1.5.0-SNAPSHOT"
+  site: "Site-A"
+  participantName: "FHIRBreak.Email"
+deploymentMode:
+  deploymentConfig: "/var/lib/configfiles/subsystem/aether-fhirbreak-email/systemconfig-microk8s-site-a.yaml"
+  petasosIPCStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone/multi-zone-ipc.xml"
+  petasosTopologyStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone/multi-zone-topology.xml"
+  petasosMetricsStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone/multi-zone-metrics.xml"
+  petasosInterceptionStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone/multi-zone-interception.xml"
+  petasosSubscriptionStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone/multi-zone-subscriptions.xml"
+  petasosTaskingStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone/multi-zone-tasking.xml"
+  petasosAuditStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone/multi-zone-audit.xml"
+  multiuseInfinispanStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone/multi-zone-infinispan.xml"
+  kubernetes: true
+  processingPlantReplicationCount: 1
+  concurrent: false
+  usingInternalEncryption: true
+deploymentSites:
+  siteCount: 1
+  site1Name: "Site-A"
+  site2Name: null
+  site3Name: null
+deploymentZone:
+  securityZoneName: "PrivateNetwork"
+  nameSpace: "site-a"
+kubeReadinessProbe:
+  serverPort: 9990
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/health"
+  server: true
+  encrypted: false
+  startupDelay: 60
+kubeLivelinessProbe:
+  serverPort: 9990
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/health"
+  server: true
+  encrypted: false
+  startupDelay: 60
+prometheusPort:
+  serverPort: 0
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/"
+  server: true
+  encrypted: false
+jolokiaPort:
+  serverPort: 8080
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/"
+  server: true
+  encrypted: false
+subsystemImageProperties:
+  repository: "localhost:32000/"
+  imageName: "aether-fhirbreak-email"
+  imageVersion: "1.5.0-SNAPSHOT"
+  pullPolicy: "Always"
+defaultServicePortLowerBound: 15510
+loadBalancer:
+  type: "LoadBalancer"
+  ipAddress: "10.123.123.43"
+volumeMounts:
+  mappedLocalStorage:
+    - volumeName: "certificates"
+      volumeMountPath: "/var/lib/pegacorn-ssl-certs"
+      volumeHostPath: "/volumes/workspace0/aether/deployment/certificates"
+    - volumeName: "configfiles"
+      volumeMountPath: "/var/lib/configfiles"
+      volumeHostPath: "/volumes/workspace0/aether/deployment/configfiles/"
+hapiAPIKey:
+  credentialName: null
+  credentialPassword: null
+  credentialReferenceName: "hapi-fhir-secrets"
+  credentialReferenceKey: "hapiApiKey"
+javaDeploymentParameters:
+  jmxMaxHeapSizeMB: "3072Mi"
+  jvmMemSizeMB: null
+petasosIPCMessagingEndpoint:
+  name: "petasos-ipc"
+  targetPortValue: 14691
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosTopologyDiscoveryEndpoint:
+  name: "petasos-top"
+  targetPortValue: 16692
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosTaskServicesEndpoint:
+  name: "petasos-task"
+  targetPortValue: 16691
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosSubscriptionsEndpoint:
+  name: "petasos-sub"
+  targetPortValue: 16693
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosInterceptionEndpoint:
+  name: "petasos-snoop"
+  targetPortValue: 16694
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosMetricsEndpoint:
+  name: "petasos-metric"
+  targetPortValue: 16695
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+multiuseInfinispanEndpoint:
+  name: "multi-infini"
+  targetPortValue: 16696
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosAuditServicesEndpoint:
+  name: "petasos-audit"
+  targetPortValue: 16698
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+edgeAnswer:
+  name: "edge-answer"
+  serverPort: 15510
+  portType: "TCP"
+  serverHostname: "0.0.0.0"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "Fast Healthcare Interoperability Resources"
+      interfaceDefinitionVersion: "4.0.1"
+  servicePort: 15510
+  serviceDNS: "aether-fhirbreak-email-site-a"
+  clusterServicePortOffsetValue: 0
+  contextPath: null
+  server: true
+  encrypted: true
+interactEmailGateway:
+  name: "email-gateway"
+  portType: "SMTP"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "Email Gateway"
+    subsystemName: "Barracuda"
+    subsystemVersion: "1"
+    externalisedServiceName: "xxxxxxx"
+    externalisedServiceEndpointName: "xxxxxxxxxx"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "SMTP"
+        interfaceDefinitionVersion: "1"
+      encryptionRequired: "false"
+      targetPortValue: 1025
+      targetPortDNSName: "pegacorn-mailhog-smtp"

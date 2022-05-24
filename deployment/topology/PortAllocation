@@ -1,0 +1,21 @@
+Ladon:FHIRAllReceive:
+ * FHIRPlace-Techone -  base + 0
+ * FHIRPlace-FMIS -     base + 1
+ * FHIRPlace-HRIMS -    base + 2
+ * FHIRPlace-Converga - base + 3
+ * FHIRPlace-CPF -      base + 4
+ * FHIRPlace-PBRC -     base + 5
+
+Petasos Stuff:
+  * FHIRPlace-Techone - Finalisation -  petasos + 0
+  * FHIRPlace-Techone - Heartbeat -     petasos + 1
+  * FHIRPlace-FMIS - Finalisation -     petasos + 2
+  * FHIRPlace-FMIS - Heartbeat -        petasos + 3
+  * FHIRPlace-HRIMS - Finalisation -    petasos + 4
+  * FHIRPlace-HRIMS - Heartbeat -       petasos + 5
+  * FHIRPlace-Converga - Finalisation - petasos + 6
+  * FHIRPlace-Converga - Heartbeat -    petasos + 7
+  * FHIRPlace-CPF - Finalisation -      petasos + 8
+  * FHIRPlace-CPF - Heartbeat -         petasos + 9
+  * FHIRPlace-PBRC - Finalisation -     petasos + 10
+  * FHIRPlace-PBRC - Heartbeat -        petasos + 11

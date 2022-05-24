@@ -1,0 +1,4 @@
+Employee ID,AGS Number,First Name,Surname,Position Start,Position End,terdate,Network Login,Email Address,detemailad,Position Number,Classification,Agency,Division,Branch,Section,SubSection,CostCode,CostCodeDesc,Reports to Position,Include
+,,,,1/12/2018 0:00:00,31/12/2199 0:00:00,,,john.smith@act.gov.au,john.smith@act.gov.au,,,,,,,,,,,N
+1112211,1233222,PETER,ROBERTS,1/12/2018 0:00:00,31/12/2199 0:00:00,,peter,,P11112,HPO4,CANBERRA HEALTH SERVICES,ALLIED HEALTH,ACUTE ALLIED HLTH SERV,SOCIAL WORK,SOCIAL WORK,7538,,,,N
+,1233222,LISA,ABBOT,1/12/2018 0:00:00,31/12/2199 0:00:00,,lisa abbot,lisa.abbot@act.gov.au,lisa.abbot@act.gov.au,P11113,HPO4,CANBERRA HEALTH SERVICES,CLINICAL SERVICES,CANCER & AMBULATORY SERV,AMBULATORY CARE,TRANSCRIPTION SERVICES,7538,TRANSCRIPTION SERVICES,P121111,N

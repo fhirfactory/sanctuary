@@ -1,0 +1,1441 @@
+---
+subsystemInstant:
+  owningOrganizationName: "ACT Health"
+  solutionName: "AETHER"
+  solutionGroup: "au.gov.act.health.aether"
+  solutionDescription: "Message Ingestion, Transformation and Forwarding (MITaF) - Bridges"
+  subsystemName: "aether-mitaf-bridges"
+  subsystemVersion: "1.5.0"
+  externalisedServiceName: "aether-mitaf-bridges"
+  externalisedServiceDNSName: "mitaf-bridges.sitea.aether.local"
+  externalisedServiceEndpointName: null
+  clusterServiceName: "aether-mitaf-bridges"
+  clusterServiceDNSName: "10.123.123.22"
+  processingPlantDNSName: "aether-mitaf-bridges"
+  processingPlantVersion: "1.5.0-SNAPSHOT"
+  site: "Site-A"
+  participantName: "MITaF.Bridges"
+deploymentMode:
+  deploymentConfig: "/var/lib/configfiles/subsystem/aether-mitaf-bridges/systemconfig-microk8s-site-a.yaml"
+  petasosIPCStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-ipc-microk8s.xml"
+  petasosTopologyStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-topology-microk8s.xml"
+  petasosMetricsStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-metrics-microk8s.xml"
+  petasosInterceptionStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-interception-microk8s.xml"
+  petasosSubscriptionStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-subscriptions-microk8s.xml"
+  petasosTaskingStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-tasking-microk8s.xml"
+  petasosAuditStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-audit-microk8s.xml"
+  multiuseInfinispanStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-infinispan-microk8s.xml"
+  kubernetes: true
+  processingPlantReplicationCount: 1
+  concurrent: false
+  usingInternalEncryption: true
+deploymentSites:
+  siteCount: 1
+  site1Name: "Site-A"
+  site2Name: null
+  site3Name: null
+deploymentZone:
+  securityZoneName: "PrivateNetwork"
+  nameSpace: "site-a"
+kubeReadinessProbe:
+  serverPort: 9990
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/health"
+  server: true
+  encrypted: false
+  startupDelay: 60
+kubeLivelinessProbe:
+  serverPort: 9990
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/health"
+  server: true
+  encrypted: false
+  startupDelay: 60
+prometheusPort:
+  serverPort: 0
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/"
+  server: true
+  encrypted: false
+jolokiaPort:
+  serverPort: 8080
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/"
+  server: true
+  encrypted: false
+subsystemImageProperties:
+  repository: "localhost:32000/"
+  imageName: "aether-mitaf-bridges"
+  imageVersion: "1.5.0-SNAPSHOT"
+  pullPolicy: "Always"
+loadBalancer:
+  type: "LoadBalancer"
+  ipAddress: "10.123.123.22"
+volumeMounts:
+  mappedLocalStorage:
+    - volumeName: "certificates"
+      volumeMountPath: "/var/lib/pegacorn-ssl-certs"
+      volumeHostPath: "/volumes/workspace0/aether/deployment/certificates"
+    - volumeName: "configfiles"
+      volumeMountPath: "/var/lib/configfiles"
+      volumeHostPath: "/volumes/workspace0/aether/deployment/configfiles/"
+    - volumeName: "transformfiles"
+      volumeMountPath: "/var/lib/subsystem"
+      volumeHostPath: "/volumes/workspace0/aether/deployment/transforms/subsystem"
+hapiAPIKey:
+  credentialName: null
+  credentialPassword: null
+  credentialReferenceName: "hapi-fhir-secrets"
+  credentialReferenceKey: "hapiApiKey"
+javaDeploymentParameters:
+  jmxMaxHeapSizeMB: "1024Mi"
+  jvmMemSizeMB: null
+petasosIPCMessagingEndpoint:
+  name: "petasos-ipc"
+  targetPortValue: 14691
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosTopologyDiscoveryEndpoint:
+  name: "petasos-top"
+  targetPortValue: 16692
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosTaskServicesEndpoint:
+  name: "petasos-task"
+  targetPortValue: 16691
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosSubscriptionsEndpoint:
+  name: "petasos-sub"
+  targetPortValue: 16693
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosInterceptionEndpoint:
+  name: "petasos-snoop"
+  targetPortValue: 16694
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosMetricsEndpoint:
+  name: "petasos-metric"
+  targetPortValue: 16695
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+multiuseInfinispanEndpoint:
+  name: "multi-infini"
+  targetPortValue: 16696
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosAuditServicesEndpoint:
+  name: "petasos-audit"
+  targetPortValue: 16698
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+edgeAnswer:
+  name: "edge-answer"
+  serverPort: 16000
+  portType: "TCP"
+  serverHostname: "0.0.0.0"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "Fast Healthcare Interoperability Resources"
+      interfaceDefinitionVersion: "4.0.1"
+  servicePort: 16000
+  servicePortName: null
+  serviceDNS: "10.123.123.22"
+  clusterServicePortOffsetValue: 0
+  contextPath: null
+  server: true
+  encrypted: true
+# Ingres Ports (Bridges --> AETHER-MITaF-Bridges)
+# AETHER-MITaF-Bridges Must Expose a Server Port
+interactADTGeneralIncoming:
+  name: "adt-gen-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16001
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16001
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334700"
+interactORUGeneralIncoming:
+  name: "oru-gen-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16002
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16002
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334330"
+interactSIUGeneralIncoming:
+  name: "siu-gen-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16003
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16003
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334500"
+interactREFGeneralIncoming:
+  name: "ref-gen-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16004
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16004
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334802"
+interactDFTGeneralIncoming:
+  name: "dft-gen-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16005
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16005
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334752"
+interactIngresORMCardioServer:
+  name: "orm-cardio-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16006
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16006
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "api-334318"
+interactBARGeneralIncoming:
+  name: "bar-gen-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16007
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16007
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334780"
+interactIngresORMAuxBloodBank:
+  name: "orm-bb-aux-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16008
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16008
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334306"
+interactIngresORMResBloodBank:
+  name: "orm-bb-res-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16032
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16032
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334304"
+interactIngresBTSBloodBank:
+  name: "bts-bb-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16009
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16009
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334380"
+interactIngresORUAIP334314:
+  name: "oru-334314-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16010
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16010
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334314"
+interactIngresORUHIPS:
+  name: "oru-hips-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16034
+  portType: "endpoint.http_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "HTTP"
+      interfaceDefinitionVersion: "*.*"
+  servicePort: 16034
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334330"    
+interactIngresRDEMerlin:
+  name: "rde-merlin-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16012
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16012
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334640"
+interactIngresDFTMerlin:
+  name: "dft-merlin-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16013
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16013
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334750"
+interactIngresORMViewpoint:
+  name: "orm-vpoint-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16014
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16014
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334325"
+interactIngresMDMARIA:
+  name: "mdm-aria-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16015
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16015
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334100"    
+interactIngresSIUARIA:
+  name: "siu-aria-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16016
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16016
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334504"            
+interactIngresORMPBRC:
+  name: "orm-pbrc-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16017
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16017
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334310"
+interactIngresADTPBRC:
+  name: "adt-pbrc-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16033
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16033
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334702"   
+interactIngresRDEPyxis:
+  name: "rde-pyxs-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16018
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16018
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334604"      
+interactIngresMFNPyxis:
+  name: "mfn-pyxs-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16023
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16023
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334610" 
+interactIngresORMSensis:
+  name: "orm-sensis-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16019
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16019
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334316"          
+interactIngresORMEverlight:
+  name: "orm-evrlight-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16021
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16021
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334312"        
+interactIngresORMCBORD:
+  name: "orm-cbord-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16022
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16022
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334430"    
+interactIngresORMHEYEX2:
+  name: "orm-heyex2-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16024
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16024
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334322"   
+interactIngresORMProvation:
+  name: "orm-prvation-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16025
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16025
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334326"   
+interactIngresORUIntelliSpacePerinatal:
+  name: "oru-isperi-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16027
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16027
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334342"   
+interactIngresORMNCSR:
+  name: "orm-ncsr-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16028
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16028
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334478"   
+interactIngresORUNCSR:
+  name: "oru-ncsr-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16029
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16029
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334474"    
+interactIngresSIUAIP334506:
+  name: "siu-334506-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16011
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16011
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334506"  
+interactIngresMDMHealthLink:
+  name: "mdm-hlink-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16031
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16031
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334002"  
+interactIngresORUNDMS:
+  name: "oru-ndms-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16035
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16035
+  serviceDNS: "10.123.123.22"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334476"
+# Egress Ports (AETHER-MITaF-Bridges --> EPIC-Bridges)
+# AETHER-MITaF-Bridges Is a Client To the Ports Exposed by EPIC-Bridges
+interactEgressORMCardioServer:
+  name: "orm-cardio-out"
+  portType: "endpoint.mllp_client"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10118
+      targetPortDNSName: "192.168.56.101"
+interactEgressORUCardioServer:
+  name: "oru-cardio-out"
+  portType: "endpoint.mllp_client"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10102
+      targetPortDNSName: "192.168.56.101"
+interactEgressORUAUXBloodBank:
+  name: "oru-bb-aux-out"
+  portType: "endpoint.mllp_client"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10101
+      targetPortDNSName: "192.168.56.101"
+interactEgressORUBPAMBloodBank:
+  name: "oru-bb-bpam-out"
+  portType: "endpoint.mllp_client"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10112
+      targetPortDNSName: "192.168.56.101"
+interactEgressRDSMerlin:
+  name: "rds-merlin-out"
+  portType: "endpoint.mllp_client"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334611"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10115
+      targetPortDNSName: "192.168.56.101"
+interactEgressORUViewpoint:
+  name: "oru-vpoint-out"
+  portType: "endpoint.mllp_client"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10109
+      targetPortDNSName: "192.168.56.101"
+interactEgressA19Query:
+  name: "a19-query-out"
+  portType: "endpoint.mllp_client"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10131
+      targetPortDNSName: "192.168.56.101"
+interactEgressMDMWinscribe:
+  name: "mdm-winscrb-out"
+  portType: "endpoint.mllp_client"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10125
+      targetPortDNSName: "192.168.56.101"
+interactEgressMDMCPF:
+  name: "mdm-cpf-out"
+  portType: "endpoint.mllp_client"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10123
+      targetPortDNSName: "192.168.56.101"
+interactEgressORUSynapse:
+  name: "oru-synapse-out"
+  portType: "endpoint.mllp_client"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10102
+      targetPortDNSName: "192.168.56.101"
+interactEgressORMIDIS:
+  name: "orm-idis-out"
+  portType: "endpoint.mllp_client"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10105
+      targetPortDNSName: "192.168.56.101"
+interactEgressMDMARIA:
+  name: "mdm-aria-out"
+  portType: "endpoint.mllp_client"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334611"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10126
+      targetPortDNSName: "192.168.56.101"
+interactEgressORUARIA:
+  name: "oru-aria-out"
+  portType: "endpoint.mllp_client"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334611"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10119
+      targetPortDNSName: "192.168.56.101"
+interactEgressSIUARIA:
+  name: "siu-aria-out"
+  portType: "endpoint.mllp_client"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "aip-334611"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10111
+      targetPortDNSName: "192.168.56.101"
+interactEgressRDSZPNPyxis:
+  name: "rdszpn-pyxs-out"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10127
+      targetPortDNSName: "192.168.56.101"  
+interactEgressORUSensis:
+  name: "oru-sensis-out"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10107
+      targetPortDNSName: "192.168.56.101"  
+interactEgressORUEverlight:
+  name: "oru-evrlight-out"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10106
+      targetPortDNSName: "192.168.56.101" 
+interactEgressORUPOCcelerator:
+  name: "oru-poc-out"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10122
+      targetPortDNSName: "192.168.56.101"
+interactEgressORUHEYEX2:
+  name: "oru-heyex2-out"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10108
+      targetPortDNSName: "192.168.56.101"
+interactEgressORUProvation:
+  name: "oru-prvation-out"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10104
+      targetPortDNSName: "192.168.56.101"
+interactEgressORUBreastScreen:
+  name: "oru-brstscrn-out"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10128
+      targetPortDNSName: "192.168.56.101"
+interactEgressORUIntelliSpaceCVCath:
+  name: "oru-iscvcat-out"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10107
+      targetPortDNSName: "192.168.56.101"
+interactEgressORUIntelliSpaceCVPeads:
+  name: "oru-iscvpea-out"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10107
+      targetPortDNSName: "192.168.56.101"
+interactEgressORUIntelliSpacePerinatal:
+  name: "oru-isperi-out"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10113
+      targetPortDNSName: "192.168.56.101"
+interactEgressORUPathologyRefLabCapital:
+  name: "oru-prlcap-out"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10103
+      targetPortDNSName: "192.168.56.101"
+interactEgressORUPathologyRefLabLaverty:
+  name: "oru-prllav-out"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10103
+      targetPortDNSName: "192.168.56.101"
+interactEgressORURespiro:
+  name: "oru-respiro-out"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10109
+      targetPortDNSName: "192.168.56.101"
+interactEgressMDMEndobase:
+  name: "mdm-endobse-out"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10105
+      targetPortDNSName: "192.168.56.101"
+interactEgressMDMVaultStream:
+  name: "mdm-vstream-out"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10124
+      targetPortDNSName: "192.168.56.101"
+interactEgressORUNCSR:
+  name: "oru-ncsr-out"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10129
+      targetPortDNSName: "192.168.56.101"
+interactEgressORUST80i:
+  name: "oru-st80i-out"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10110
+      targetPortDNSName: "192.168.56.101"
+interactEgressORUHealthLink:
+  name: "oru-hlink-out"
+  portType: "endpoint.mllp.client"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 10117
+      targetPortDNSName: "192.168.56.101"
+interactEgressREFHealthLink:
+  name: "ref-hlink-out"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "EPIC"
+    subsystemName: "Bridges"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "bridges-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 22200
+      targetPortDNSName: "192.168.56.101"

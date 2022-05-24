@@ -1,0 +1,31 @@
+127.0.0.1 pegacorn-hestia-dam-server.site-a pegacorn-hestia-dam-server.site-b
+127.0.0.1 pegacorn-hestia-dam-storage.site-a pegacorn-hestia-dam-storage.site-b
+127.0.0.1 pegacorn-fhirplace-mdr-server.site-a pegacorn-fhirplace-mdr-server.site-b
+127.0.0.1 pegacorn-fhirplace-mdr-storage.site-a pegacorn-fhirplace-mdr-storage.site-b
+127.0.0.1 pegacorn-virtualdb-server.site-a pegacorn-virtualdb-server.site-b
+127.0.0.1 pegacorn-virtualdb-storage.site-a pegacorn-virtualdb-storage.site-b
+127.0.0.1 pegacorn-hestia-audit-server.site-a pegacorn-hestia-audit-server.site-b
+127.0.0.1 pegacorn-hestia-audit.storage.site-a pegacorn-hestia-audit.storage.site-b
+
+127.0.0.1 pegacorn-communicate-grpsvr.site-a pegacorn-communicate-grpsvr.site-b
+127.0.0.1 pegacorn-communicate-iris.site-a pegacorn-communicate-iris.site-b
+
+127.0.0.1 pegacorn-ladon-gen0.site-a pegacorn-ladon-gen0.site-b
+
+127.0.0.1 pegacorn-mitaf-sms.site-a pegacorn-mitaf-sms.site-b
+127.0.0.1 pegacorn-mitaf-email.site-a pegacorn-mitaf-email.site-b
+127.0.0.1 pegacorn-mitaf-critcoms.site-a pegacorn-mitaf-critcoms.site-b
+127.0.0.1 pegacorn-mitaf-critcoms.site-a pegacorn-mitaf-critcoms.site-b
+
+127.0.0.1 aether-fhirbreak-fmis.site-a aether-fhirbreak-fmis.site-b
+127.0.0.1 aether-fhirbreak-techone.site-a aether-fhirbreak-techone.site-b
+
+127.0.0.1 pegacorn-authorisation.site-a
+127.0.0.1 pegacorn-authorisation-storage.site-a
+127.0.0.1 pegacorn-authorisation.site-b
+127.0.0.1 pegacorn-authorisation-storage.site-b
+
+M161M-4G19L-483J3-0RC2K-316P5
+
+
+

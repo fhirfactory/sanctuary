@@ -1,0 +1,201 @@
+---
+subsystemInstant:
+  owningOrganizationName: "ACT Health"
+  solutionName: "AETHER"
+  solutionGroup: "au.gov.act.health.aether"
+  solutionDescription: Message Ingestion, Transformation and Forwarding (MITaF) - National Cancer Screening Registry (NCSR)
+  subsystemName: "aether-mitaf-ncsr"
+  subsystemVersion: "1.5.0"
+  externalisedServiceName: "aether-mitaf-ncsr"
+  externalisedServiceDNSName: "mitaf-ncsr.sitea.aether.local"
+  externalisedServiceEndpointName: null
+  clusterServiceName: "aether-mitaf-ncsr"
+  clusterServiceDNSName: "10.0.0.13"
+  processingPlantName: "AETHER.MITaF.National Cancer Screening Registry (NCSR)"
+  processingPlantDNSName: "aether-mitaf-ncsr"
+  processingPlantVersion: "1.0.0-SNAPSHOT"
+deploymentMode:
+  deploymentConfig: "systemconfig-microk8s-site-a.yaml"
+  interNetworkIPCStackConfigFile: "site-a-multi-zone-ipc-microk8s.xml"
+  intraNetworkIPCStackConfigFile: "site-a-private-network-ipc.xml"
+  interNetworkOAMStackConfigFile: "site-a-multi-zone-oam-microk8s.xml"
+  intraNetworkOAMStackConfigFile: "site-a-private-network-oam.xml"
+  kubernetes: true
+  processingPlantReplicationCount: 1
+  concurrent: false
+  usingInternalEncryption: true
+deploymentSites:
+  siteCount: 1
+  site1Name: "Site-A"
+  site2Name: null
+  site3Name: null
+deploymentZone:
+  securityZoneName: "private-network"
+  nameSpace: "site-a"
+kubeReadinessProbe:
+  serverPort: 9990
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/health"
+  server: true
+  encrypted: false
+  startupDelay: 60
+kubeLivelinessProbe:
+  serverPort: 9990
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/health"
+  server: true
+  encrypted: false
+  startupDelay: 60
+prometheusPort:
+  serverPort: 0
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/"
+  server: true
+  encrypted: false
+jolokiaPort:
+  serverPort: 8080
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/"
+  server: true
+  encrypted: false
+subsystemImageProperties:
+  repository: "localhost:32000/"
+  imageName: "aether-mitaf-ncsr"
+  imageVersion: "1.0.0-SNAPSHOT"
+  pullPolicy: "Always"
+defaultServicePortLowerBound: 16530
+loadBalancer:
+  type: "LoadBalancer"
+  ipAddress: "10.0.0.13"
+volumeMounts:
+  volumeMountName: "certificates"
+  volumeMountPath: "/var/lib/pegacorn-ssl-certs"
+  volumeName: "certificates"
+  volumeHostPath: "/volumes/workspace0/data/"
+hapiAPIKey:
+  credentialName: null
+  credentialPassword: null
+  credentialReferenceName: "hapi-fhir-secrets"
+  credentialReferenceKey: "hapiApiKey"
+javaDeploymentParameters:
+  jmxMaxHeapSizeMB: "1024Mi"
+  jvmMemSizeMB: null
+interZoneIPC:
+  name: "inter-zone-ipc"
+  serverPort: 14702
+  portType: "endpoint.ipc_messaging.jgroups_interzone"
+  serverHostname: "0.0.0.0"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-Gossip"
+      interfaceDefinitionVersion: "1.0.0"
+  initialHosts:
+    - hostName: "aether-petasos-gossiprouter-one-site-a"
+      portNumber: "17004"
+    - hostName: "aether-petasos-gossiprouter-two-site-a"
+      portNumber: "17006"
+  server: "true"
+  encrypted: "false"
+intraZoneIPC:
+  name: "intra-zone-ipc"
+  serverPort: 14700
+  portType: "endpoint.ipc_messaging.jgroups_intrazone"
+  serverHostname: "0.0.0.0"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-Kube"
+      interfaceDefinitionVersion: "1.0.0"
+  initialHosts:
+    - hostName: "localhost"
+      portNumber: "14700"
+  server: "true"
+  encrypted: "false"
+interZoneOAM:
+  name: "inter-zone-oam"
+  serverPort: 14703
+  portType: "endpoint.ipc_messaging.jgroups_interzone"
+  serverHostname: "0.0.0.0"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-Gossip"
+      interfaceDefinitionVersion: "1.0.0"
+  initialHosts:
+    - hostName: "aether-petasos-gossiprouter-one-site-a"
+      portNumber: "17005"
+    - hostName: "aether-petasos-gossiprouter-two-site-a"
+      portNumber: "17007"
+  server: "true"
+  encrypted: "false"
+intraZoneOAM:
+  name: "intra-zone-oam"
+  serverPort: 14701
+  portType: "endpoint.ipc_messaging.jgroups_intrazone"
+  serverHostname: "0.0.0.0"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-Kube"
+      interfaceDefinitionVersion: "1.0.0"
+  initialHosts:
+    - hostName: "localhost"
+      portNumber: "14700"
+  server: "true"
+  encrypted: "false"
+edgeAnswer:
+  name: "edge-answer"
+  serverPort: 16530
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "Fast Healthcare Interoperability Resources"
+      interfaceDefinitionVersion: "4.0.1"
+  servicePort: 16530
+  servicePortName: null
+  serviceDNS: null
+  clusterServicePortOffsetValue: 0
+  contextPath: null
+  server: true
+  encrypted: true
+interactAllACKORUIngres:
+  name: "ack-oru-gen-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 60020
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 60020
+  serviceDNS: "aether-mitaf-ncsr-site-a"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "National Cancer Screening Registry (NCSR)"
+    subsystemName: "National Cancer Screening Registry (NCSR)"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "ncsr-aether-integration"
+    externalisedServiceEndpointName: "mllp-sender"  
+interactAllEgress:
+  name: "all-gen-out"
+  portType: "endpoint.mllp_client"
+  portParameters: null;
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "National Cancer Screening Registry (NCSR)"
+    subsystemName: "National Cancer Screening Registry (NCSR)"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "ncsr-aether-integration"
+    externalisedServiceEndpointName: "mllp-receiver"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "MLLP"
+        interfaceDefinitionVersion: "v2.x"
+      encryptionRequired: "true"
+      targetPortValue: 50000
+      targetPortDNSName: "172.30.123.161"

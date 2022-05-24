@@ -1,0 +1,3 @@
+Employee ID,AGS Number,First Name,Surname,Position Start,Position End,terdate,Network Login,Email Address,detemailad,Position Number,Classification,Agency,Division,Branch,Section,SubSection,CostCode,CostCodeDesc,Reports to Position,Include
+1112211,1233222,JOHN,SMITH,01-Dec-18,31-Dec-99,,john smith,john.smith@act.gov.au,john.smith@act.gov.au,P11111,HPO4,CANBERRA HEALTH SERVICES,ALLIED HEALTH,ACUTE ALLIED HLTH SERV,SOCIAL WORK,SOCIAL WORK,7538,SOCIAL WORK,111,AA,Y,3,2,1,1
+1112211,1233222,Peter,Roberts,peter roberts,peter.roberts@act.gov.au,peter.roberts@act.gov.au,P11112,HPO4,CANBERRA HEALTH SERVICES,ALLIED HEALTH,ACUTE ALLIED HLTH SERV,SOCIAL WORK,SOCIAL WORK,7538,SOCIAL WORK,Y,1,1,1,2

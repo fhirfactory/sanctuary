@@ -1,0 +1,306 @@
+---
+subsystemInstant:
+  owningOrganizationName: "ACT Health"
+  solutionName: "AETHER"
+  solutionGroup: "au.gov.act.health.aether"
+  solutionDescription: "IT Operations Services"
+  subsystemName: "aether-itops-im"
+  subsystemVersion: "1.5.0"
+  externalisedServiceName: "aether-itops-im"
+  externalisedServiceDNSName: "itops-im.sitea.aether.local"
+  externalisedServiceEndpointName: null
+  clusterServiceName: "aether-itops-im"
+  clusterServiceDNSName: "10.123.123.50"
+  processingPlantDNSName: "aether-itops-im"
+  processingPlantVersion: "1.0.0-SNAPSHOT"
+  participantName: "ITOps.IM"
+  site: "Site-A"
+deploymentMode:
+  deploymentConfig: "/var/lib/configfiles/subsystem/aether-itops-im/systemconfig-microk8s-site-a.yaml"
+  petasosIPCStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-ipc-microk8s.xml"
+  petasosTopologyStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-topology-microk8s.xml"
+  petasosMetricsStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-metrics-microk8s.xml"
+  petasosInterceptionStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-interception-microk8s.xml"
+  petasosSubscriptionStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-subscriptions-microk8s.xml"
+  petasosTaskingStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-tasking-microk8s.xml"
+  petasosAuditStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-audit-microk8s.xml"
+  multiuseInfinispanStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-infinispan-microk8s.xml"
+  kubernetes: true
+  processingPlantReplicationCount: 1
+  concurrent: false
+  usingInternalEncryption: true
+  otherDeploymentParameters:
+    - parameterName: "ERROR_EVENT_EMAIL_TARGET_ADDRESS"
+      parameterValue: "someone@somewhere.net"
+    - parameterName: "ERROR_EVENT_EMAIL_SOURCE_ADDRESS"
+      parameterValue: "someone.else@somwhere.net"
+    - parameterName: "ERROR_EVENT_SMS_TARGET_PHONE_NUMBER"
+      parameterValue: "0437196911"
+deploymentSites:
+  siteCount: 1
+  site1Name: "Site-A"
+  site2Name: null
+  site3Name: null
+deploymentZone:
+  securityZoneName: "PrivateNetwork"
+  nameSpace: "site-a"
+kubeReadinessProbe:
+  serverPort: 9990
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/"
+  server: true
+  encrypted: false
+  startupDelay: 60
+kubeLivelinessProbe:
+  serverPort: 9990
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/"
+  server: true
+  encrypted: false
+  startupDelay: 60
+prometheusPort:
+  serverPort: 0
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/"
+  server: true
+  encrypted: false
+jolokiaPort:
+  serverPort: 8080
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/"
+  server: true
+  encrypted: false
+subsystemImageProperties:
+  repository: "localhost:32000/"
+  imageName: "aether-itops-im"
+  imageVersion: "1.5.0-SNAPSHOT"
+  pullPolicy: "Always"
+defaultServicePortLowerBound: 16150
+loadBalancer:
+  type: "LoadBalancer"
+  ipAddress: "10.123.123.50"
+volumeMounts:
+  mappedLocalStorage:
+    - volumeName: "certificates"
+      volumeMountPath: "/var/lib/pegacorn-ssl-certs"
+      volumeHostPath: "/volumes/workspace0/aether/deployment/certificates"
+    - volumeName: "configfiles"
+      volumeMountPath: "/var/lib/configfiles"
+      volumeHostPath: "/volumes/workspace0/aether/deployment/configfiles/"
+hapiAPIKey:
+  credentialName: null
+  credentialPassword: null
+  credentialReferenceName: "hapi-fhir-secrets"
+  credentialReferenceKey: "hapiApiKey"
+javaDeploymentParameters:
+  jmxMaxHeapSizeMB: "2048Mi"
+  jvmMemSizeMB: null
+petasosIPCMessagingEndpoint:
+  name: "petasos-ipc"
+  targetPortValue: 14691
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosTopologyDiscoveryEndpoint:
+  name: "petasos-top"
+  targetPortValue: 16692
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosTaskServicesEndpoint:
+  name: "petasos-task"
+  targetPortValue: 16691
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosSubscriptionsEndpoint:
+  name: "petasos-sub"
+  targetPortValue: 16693
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosInterceptionEndpoint:
+  name: "petasos-snoop"
+  targetPortValue: 16694
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosMetricsEndpoint:
+  name: "petasos-metric"
+  targetPortValue: 16695
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+multiuseInfinispanEndpoint:
+  name: "multi-infini"
+  targetPortValue: 16696
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosAuditServicesEndpoint:
+  name: "petasos-audit"
+  targetPortValue: 16698
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+edgeAnswer:
+  name: "edge-answer"
+  serverPort: 16610
+  portType: "TCP"
+  serverHostname: "0.0.0.0"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "Fast Healthcare Interoperability Resources"
+      interfaceDefinitionVersion: "4.0.1"
+  servicePort: 16610
+  servicePortName: 16610
+  serviceDNS: "10.123.123.50"
+  clusterServicePortOffsetValue: 0
+  contextPath: null
+  server: true
+  encrypted: false
+edgeAsk:
+  name: "edge-ask"
+  portType: "endpoint.restful"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  startupDelay: 30000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "AETHER"
+    subsystemName: "aether-ladon-datagrid"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "aether-ladon-datagrid"
+    externalisedServiceEndpointName: "aether-ladon-datagrid"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "FHIR-HTTP"
+        interfaceDefinitionVersion: "4.0.1"
+      encryptionRequired: "false"
+      targetPortValue: 21000
+      targetPortDNSName: "192.168.56.105"
+itopsServerSegment:
+  name: "iops-im-rest"
+  serverPort: 16611
+  portType: "TCP"
+  serverHostname: "0.0.0.0"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "Pegacorn-Topology"
+      interfaceDefinitionVersion: "1.0.0"
+  servicePort: 16611
+  servicePortName: null
+  serviceDNS: "10.123.123.50"
+  clusterServicePortOffsetValue: 0
+  contextPath: ""
+  server: true
+  encrypted: false
+interactIngressMatrixEvents:
+  name: "matrix-events"
+  serverPort: 16612
+  portType: "TCP"
+  serverHostname: "0.0.0.0"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "Matrix"
+      interfaceDefinitionVersion: "0.6.1"
+  servicePort: 16612
+  servicePortName: null
+  serviceDNS: "10.123.123.50"
+  clusterServicePortOffsetValue: 0
+  contextPath: ""
+  server: true
+  encrypted: false
+interactEgressMatrixActions:
+  name: "matrix-actions"
+  portType: "endpoint.restful"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  startupDelay: 30000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "AETHER"
+    subsystemName: "aether-itops-replica-server"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "aether-itops-replica-server"
+    externalisedServiceEndpointName: "aether-itops-replica-server"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "FHIR-HTTP"
+        interfaceDefinitionVersion: "4.0.1"
+      encryptionRequired: "false"
+      targetPortValue: 18003
+      targetPortDNSName: "10.123.123.51"
+interactEgressSynapseAPIClient:
+  name: "synapse-api"
+  portType: "endpoint.restful"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  startupDelay: 30000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "AETHER"
+    subsystemName: "aether-itops-replica-server"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "aether-itops-replica-server"
+    externalisedServiceEndpointName: "aether-itops-replica-server"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "FHIR-HTTP"
+        interfaceDefinitionVersion: "4.0.1"
+      encryptionRequired: "false"
+      targetPortValue: 18003
+      targetPortDNSName: "10.123.123.51"
+interactEgressMatrixQuery:
+  name: "matrix-query"
+  portType: "endpoint.restful"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  startupDelay: 30000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "AETHER"
+    subsystemName: "aether-itops-replica-server"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "aether-itops-replica-server"
+    externalisedServiceEndpointName: "aether-itops-replica-server"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "FHIR-HTTP"
+        interfaceDefinitionVersion: "4.0.1"
+      encryptionRequired: "false"
+      targetPortValue: 18003
+      targetPortDNSName: "10.123.123.51"

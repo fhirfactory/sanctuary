@@ -1,0 +1,107 @@
+---
+subsystemInstant:
+  owningOrganizationName: "ACT Health"
+  solutionName: "AETHER"
+  solutionGroup: "au.gov.act.health.aether"
+  solutionDescription: "ITOps System Replica Server"
+  subsystemName: "aether-itops-replica"
+  subsystemVersion: "1.5.0"
+  externalisedServiceName: "aether-itops-replica-server"
+  externalisedServiceDNSName: "itops-im.sitea.aether.local"
+  externalisedServiceEndpointName: null
+  clusterServiceName: "aether-itops-im"
+  clusterServiceDNSName: "10.123.123.51"
+  processingPlantName: "AETHER.ITOps.Replica.Server"
+  processingPlantDNSName: "aether-itops-replica-server"
+  processingPlantVersion: "1.0.0-SNAPSHOT"
+deploymentMode:
+  deploymentConfig: "/var/lib/configfiles/subsystem/aether-itops-replicate-server/systemconfig-microk8s-site-a.yaml"
+  kubernetes: true
+  processingPlantReplicationCount: 1
+  concurrent: false
+  usingInternalEncryption: true
+deploymentSites:
+  siteCount: 1
+  site1Name: "Site-A"
+  site2Name: null
+  site3Name: null
+deploymentZone:
+  securityZoneName: "PrivateNetwork"
+  nameSpace: "site-a"
+kubeReadinessProbe:
+  serverPort: 9990
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/health"
+  server: true
+  encrypted: false
+  startupDelay: 60
+kubeLivelinessProbe:
+  serverPort: 9990
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/health"
+  server: true
+  encrypted: false
+  startupDelay: 60
+prometheusPort:
+  serverPort: 0
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/"
+  server: true
+  encrypted: false
+jolokiaPort:
+  serverPort: 8080
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/"
+  server: true
+  encrypted: false
+subsystemImageProperties:
+  repository: "localhost:32000/"
+  imageName: "aether-itops-replica"
+  imageVersion: "1.0.0-SNAPSHOT"
+  pullPolicy: "Always"
+defaultServicePortLowerBound: 16150
+loadBalancer:
+  type: "LoadBalancer"
+  ipAddress: "10.123.123.51"
+volumeMounts:
+  mappedLocalStorage:
+    - volumeName: "certificates"
+      volumeMountPath: "/var/lib/pegacorn-ssl-certs"
+      volumeHostPath: "/volumes/workspace0/aether/deployment/certificates"
+    - volumeName: "configfiles"
+      volumeMountPath: "/var/lib/configfiles"
+      volumeHostPath: "/volumes/workspace0/aether/deployment/configfiles/"
+    - volumeName: "datafiles"
+      volumeMountPath: "/data"
+      volumeHostPath: "/volumes/workspace0/aether/deployment/data/aether-itops-replica-server/"
+hapiAPIKey:
+  credentialName: null
+  credentialPassword: null
+  credentialReferenceName: "hapi-fhir-secrets"
+  credentialReferenceKey: "hapiApiKey"
+javaDeploymentParameters:
+  jmxMaxHeapSizeMB: "1024Mi"
+  jvmMemSizeMB: null
+replicaAccessPoint:
+  name: "itops-rep"
+  serverPort: 8008
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "Matrix"
+      interfaceDefinitionVersion: "0.6.1"
+  servicePort: 18003
+  servicePortName: null
+  serviceDNS: "0.0.0.0"
+  clusterServicePortOffsetValue: 0
+  contextPath: ""
+  server: true
+  encrypted: false

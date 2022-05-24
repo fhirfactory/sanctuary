@@ -1,0 +1,215 @@
+---
+subsystemInstant:
+  owningOrganizationName: "ACT Health"
+  solutionName: "AETHER"
+  solutionGroup: "au.gov.act.health.aether"
+  solutionDescription: "Inter-Processing Communications Repeater Service"
+  subsystemName: "aether-petasos-interzonerepeater-one"
+  subsystemVersion: "1.5.0"
+  externalisedServiceName: "aether-petasos-interzonerepeater-one"
+  externalisedServiceDNSName: null
+  externalisedServiceEndpointName: null
+  clusterServiceName: "aether-petasos-interzonerepeater-one"
+  clusterServiceDNSName: "10.123.123.48"
+  processingPlantDNSName: "aether-petasos-interzonerepeater-one"
+  processingPlantVersion: "1.0.0-SNAPSHOT"
+  participantName: "Petasos.InterZoneRepeater.One"
+  site: "Site-A"
+deploymentMode:
+  deploymentConfig: "/var/lib/configfiles/subsystem/aether-petasos-interzonerepeater/systemconfig-one-site-a-microk8s.yaml"
+  kubernetes: true
+  processingPlantReplicationCount: 1
+  concurrent: false
+  usingInternalEncryption: true
+deploymentSites:
+  siteCount: 1
+  site1Name: "Site-A"
+  site2Name: null
+  site3Name: null
+deploymentZone:
+  securityZoneName: "private-network"
+  nameSpace: "site-a"
+kubeReadinessProbe:
+  serverPort: 9990
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/aether/petasos/itops"
+  server: true
+  encrypted: false
+  startupDelay: 60
+kubeLivelinessProbe:
+  serverPort: 9990
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/aether/petasos/itops"
+  server: true
+  encrypted: false
+  startupDelay: 60
+prometheusPort:
+  serverPort: 9990
+  portType: "TCP"
+  serverHostname: "0.0.0.0"
+  supportedInterfaceProfiles: []
+  contextPath: "/aether/petasos/itops"
+  server: true
+  encrypted: false
+jolokiaPort:
+  serverPort: 8080
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/"
+  server: true
+  encrypted: false
+subsystemImageProperties:
+  repository: "localhost:32000/"
+  imageName: "aether-petasos-interzonerepeater"
+  imageVersion: "1.5.0-SNAPSHOT"
+  pullPolicy: "Always"
+loadBalancer:
+  type: "LoadBalancer"
+  ipAddress: "10.123.123.48"
+volumeMounts:
+  mappedLocalStorage:
+    - volumeName: "certificates"
+      volumeMountPath: "/var/lib/pegacorn-ssl-certs"
+      volumeHostPath: "/volumes/workspace0/aether/deployment/certificates"
+    - volumeName: "configfiles"
+      volumeMountPath: "/var/lib/configfiles"
+      volumeHostPath: "/volumes/workspace0/aether/deployment/configfiles/"
+hapiAPIKey:
+  credentialName: null
+  credentialPassword: null
+  credentialReferenceName: "hapi-fhir-secrets"
+  credentialReferenceKey: "hapiApiKey"
+javaDeploymentParameters:
+  jmxMaxHeapSizeMB: "2048Mi"
+  jvmMemSizeMB: null
+multizoneRepeaterIPC:
+  name: "rpter-ipc"
+  serverPort: 17690
+  portType: "TCP"
+  serverHostname: "0.0.0.0"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "Petasos IPC"
+      interfaceDefinitionVersion: "1.0.0"
+  servicePort: 17690
+  servicePortName: "aether-petasos-interzonerepeater"
+  serviceDNS: "10.123.123.48"
+  clusterServicePortOffsetValue: 0
+  server: true
+  encrypted: false
+multizoneRepeaterTasking:
+  name: "rpter-task"
+  serverPort: 17691
+  portType: "TCP"
+  serverHostname: "0.0.0.0"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "Petasos IPC"
+      interfaceDefinitionVersion: "1.0.0"
+  servicePort: 17691
+  servicePortName: "aether-petasos-interzonerepeater"
+  serviceDNS: "10.123.123.48"
+  clusterServicePortOffsetValue: 0
+  server: true
+  encrypted: false
+multizoneRepeaterTopology:
+  name: "rpter-top"
+  serverPort: 17692
+  portType: "TCP"
+  serverHostname: "0.0.0.0"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "Petasos IPC"
+      interfaceDefinitionVersion: "1.0.0"
+  servicePort: 17692
+  servicePortName: "aether-petasos-interzonerepeater"
+  serviceDNS: "10.123.123.48"
+  clusterServicePortOffsetValue: 0
+  server: true
+  encrypted: false
+multizoneRepeaterSubscriptions:
+  name: "rpter-sub"
+  serverPort: 17693
+  portType: "TCP"
+  serverHostname: "0.0.0.0"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "Petasos IPC"
+      interfaceDefinitionVersion: "1.0.0"
+  servicePort: 17693
+  servicePortName: "aether-petasos-interzonerepeater"
+  serviceDNS: "10.123.123.48"
+  clusterServicePortOffsetValue: 0
+  server: true
+  encrypted: false
+multizoneRepeaterInterception:
+  name: "rpter-int"
+  serverPort: 17694
+  portType: "TCP"
+  serverHostname: "0.0.0.0"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "Petasos IPC"
+      interfaceDefinitionVersion: "1.0.0"
+  servicePort: 17694
+  servicePortName: "aether-petasos-interzonerepeater"
+  serviceDNS: "10.123.123.48"
+  clusterServicePortOffsetValue: 0
+  server: true
+  encrypted: false
+multizoneRepeaterMetrics:
+  name: "rpter-metrics"
+  serverPort: 17695
+  portType: "TCP"
+  serverHostname: "0.0.0.0"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "Petasos IPC"
+      interfaceDefinitionVersion: "1.0.0"
+  servicePort: 17695
+  servicePortName: "aether-petasos-interzonerepeater"
+  serviceDNS: "10.123.123.48"
+  clusterServicePortOffsetValue: 0
+  server: true
+  encrypted: false
+multizoneRepeaterInfinspan:
+  name: "rpter-infini"
+  serverPort: 17696
+  portType: "TCP"
+  serverHostname: "0.0.0.0"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "Petasos IPC"
+      interfaceDefinitionVersion: "1.0.0"
+  servicePort: 17696
+  servicePortName: "aether-petasos-interzonerepeater"
+  serviceDNS: "10.123.123.48"
+  clusterServicePortOffsetValue: 0
+  server: true
+  encrypted: false
+multizoneRepeaterDatagrid:
+  name: "rpter-dgrid"
+  serverPort: 17697
+  portType: "TCP"
+  serverHostname: "0.0.0.0"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "Petasos IPC"
+      interfaceDefinitionVersion: "1.0.0"
+  servicePort: 17697
+  servicePortName: "aether-petasos-interzonerepeater"
+  serviceDNS: "10.123.123.48"
+  clusterServicePortOffsetValue: 0
+  server: true
+  encrypted: false
+multizoneRepeaterAudit:
+  name: "rpter-audit"
+  serverPort: 17698
+  portType: "TCP"
+  serverHostname: "0.0.0.0"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "Petasos IPC"
+      interfaceDefinitionVersion: "1.0.0"
+  servicePort: 17698
+  servicePortName: "aether-petasos-interzonerepeater"
+  serviceDNS: "10.123.123.48"
+  clusterServicePortOffsetValue: 0
+  server: true
+  encrypted: false

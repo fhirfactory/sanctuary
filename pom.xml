@@ -11,8 +11,10 @@
     <artifactId>sanctuary</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>The Pegacorn Sanctuary</name>
-    <description>Reference Deployment of the Pegacorn Components</description>
+    
+    <name>Sanctuary</name>
+    
+    <description>Reference Deployment of the DRICaTS Components</description>
     <inceptionYear>2019</inceptionYear>
 
     <licenses>
@@ -37,8 +39,11 @@
     </developers>
 
     <modules>
-        <module>communicate-whispers</module>
-
+    	<module>deployment</module>
+        <module>hestia</module>
+        <module>itops</module>
+        <module>mitaf</module>
+        <module>ponos</module>
     </modules>
 
     <scm>
@@ -46,6 +51,11 @@
     </scm>
 
     <properties>
+    	<!-- Pegacorn Version -->
+        <version-pegacorn>1.5.0-SNAPSHOT</version-pegacorn>
+        <version-net.fhirfactory.pegacorn>1.5.0-SNAPSHOT</version-net.fhirfactory.pegacorn>
+        <!-- Pegacorn Version -->
+    
        
         <version-ca.uhn.hapi.fhir>5.4.0</version-ca.uhn.hapi.fhir>
         <version-ca.uhn.hapi-hl7structures>2.3</version-ca.uhn.hapi-hl7structures>
@@ -55,6 +65,7 @@
 
         <version-com.fasterxml.jackson.core-jackson-databind>2.12.3</version-com.fasterxml.jackson.core-jackson-databind>
         <version-com.fasterxml.jackson.core-jackson-core>2.9.10</version-com.fasterxml.jackson.core-jackson-core>
+        <version-com.fasterxml.jackson.datatype-jackson-datatype-jsr310>2.12.3</version-com.fasterxml.jackson.datatype-jackson-datatype-jsr310>
 
         <version-com.github.ben-manes.caffeine>2.8.6</version-com.github.ben-manes.caffeine>
 

@@ -1,0 +1,233 @@
+---
+subsystemInstant:
+  owningOrganizationName: "ACT Health"
+  solutionName: "AETHER"
+  solutionGroup: "au.gov.act.health.aether"
+  solutionDescription: "Message Ingestion, Transformation and Forwarding (MITaF) - IIE (ACTPAS)"
+  subsystemName: "aether-mitaf-iie"
+  subsystemVersion: "1.5.0"
+  externalisedServiceName: "aether-mitaf-iie"
+  externalisedServiceDNSName: "mitaf-iie.sitea.aether.local"
+  externalisedServiceEndpointName: null
+  clusterServiceName: "aether-mitaf-iie"
+  clusterServiceDNSName: "10.123.123.40"
+  processingPlantDNSName: "aether-mitaf-iie"
+  processingPlantVersion: "1.0.0-SNAPSHOT"
+  site: "Site-A"
+  participantName: "MITaF.IIE"
+deploymentMode:
+  deploymentConfig: "/var/lib/configfiles/subsystem/aether-mitaf-iie/systemconfig-microk8s-site-a.yaml"
+  petasosIPCStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-ipc-microk8s.xml"
+  petasosTopologyStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-topology-microk8s.xml"
+  petasosMetricsStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-metrics-microk8s.xml"
+  petasosInterceptionStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-interception-microk8s.xml"
+  petasosSubscriptionStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-subscriptions-microk8s.xml"
+  petasosTaskingStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-tasking-microk8s.xml"
+  petasosAuditStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-audit-microk8s.xml"
+  multiuseInfinispanStackConfigFile: "/var/lib/configfiles/network/jgroups/multi-zone-infinispan-microk8s.xml"
+  kubernetes: true
+  processingPlantReplicationCount: 1
+  concurrent: false
+  usingInternalEncryption: true
+  otherDeploymentParameters:
+    - parameterName: "AUDIT_LEVEL"
+      parameterValue: "Coarse"
+    - parameterName: "SEDA_QUEUE_DEFAULT_SIZE"
+      parameterValue: "1000"
+    - parameterName: "SEDA_QUEUE_BLOCK_ON_FULL"
+      parameterValue: "True"
+deploymentSites:
+  siteCount: 1
+  site1Name: "Site-A"
+  site2Name: null
+  site3Name: null
+deploymentZone:
+  securityZoneName: "PrivateNetwork"
+  nameSpace: "site-a"
+kubeReadinessProbe:
+  serverPort: 9990
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/"
+  server: true
+  encrypted: false
+  startupDelay: 60
+kubeLivelinessProbe:
+  serverPort: 9990
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/"
+  server: true
+  encrypted: false
+  startupDelay: 60
+prometheusPort:
+  serverPort: 0
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/"
+  server: true
+  encrypted: false
+jolokiaPort:
+  serverPort: 8080
+  portType: "TCP"
+  serverHostname: null
+  supportedInterfaceProfiles: []
+  contextPath: "/"
+  server: true
+  encrypted: false
+subsystemImageProperties:
+  repository: "localhost:32000/"
+  imageName: "aether-mitaf-iie"
+  imageVersion: "1.5.0-SNAPSHOT"
+  pullPolicy: "Always"
+loadBalancer:
+  type: "LoadBalancer"
+  ipAddress: "10.123.123.40"
+volumeMounts:
+  mappedLocalStorage:
+    - volumeName: "certificates"
+      volumeMountPath: "/var/lib/pegacorn-ssl-certs"
+      volumeHostPath: "/volumes/workspace0/aether/deployment/certificates"
+    - volumeName: "configfiles"
+      volumeMountPath: "/var/lib/configfiles"
+      volumeHostPath: "/volumes/workspace0/aether/deployment/configfiles/"
+    - volumeName: "transformfiles"
+      volumeMountPath: "/var/lib/subsystem"
+      volumeHostPath: "/volumes/workspace0/aether/deployment/transforms/subsystem"
+hapiAPIKey:
+  credentialName: null
+  credentialPassword: null
+  credentialReferenceName: "hapi-fhir-secrets"
+  credentialReferenceKey: "hapiApiKey"
+javaDeploymentParameters:
+  jmxMaxHeapSizeMB: "2048Mi"
+  jvmMemSizeMB: null
+petasosIPCMessagingEndpoint:
+  name: "petasos-ipc"
+  targetPortValue: 14691
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosTopologyDiscoveryEndpoint:
+  name: "petasos-top"
+  targetPortValue: 16692
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosTaskServicesEndpoint:
+  name: "petasos-task"
+  targetPortValue: 16691
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosSubscriptionsEndpoint:
+  name: "petasos-sub"
+  targetPortValue: 16693
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosInterceptionEndpoint:
+  name: "petasos-snoop"
+  targetPortValue: 16694
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosMetricsEndpoint:
+  name: "petasos-metric"
+  targetPortValue: 16695
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+multiuseInfinispanEndpoint:
+  name: "multi-infini"
+  targetPortValue: 16696
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+petasosAuditServicesEndpoint:
+  name: "petasos-audit"
+  targetPortValue: 16698
+  portType: "endpoint.ipc_messaging.jgroups_interzone_client"
+  targetHostName: "0.0.0.0"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "JGroups-IZR-Client"
+      interfaceDefinitionVersion: "1.0.0"
+edgeAnswer:
+  name: "edge-answer"
+  serverPort: 16610
+  portType: "TCP"
+  serverHostname: "0.0.0.0"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "Fast Healthcare Interoperability Resources"
+      interfaceDefinitionVersion: "4.0.1"
+  servicePort: 16610
+  serviceDNS: "10.123.123.40"
+  clusterServicePortOffsetValue: 0
+  contextPath: null
+  server: true
+  encrypted: true
+edgeAsk:
+  name: "edge-ask"
+  portType: "endpoint.restful"
+  defaultRetryCount: 3
+  defaultRetryWait: 10000
+  defaultTimeout: 5000
+  startupDelay: 30000
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "AETHER"
+    subsystemName: "aether-ladon-datagrid"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "aether-ladon-datagrid"
+    externalisedServiceEndpointName: "aether-ladon-datagrid"
+    targetPort1:
+      targetInterfaceDefinition:
+        interfaceDefinitionName: "FHIR-HTTP"
+        interfaceDefinitionVersion: "4.0.1"
+      encryptionRequired: "false"
+      targetPortValue: 21000
+      targetPortDNSName: "192.168.56.105"
+interactIngresADTMessaging:
+  name: "adt-in"
+  serverHostname: "0.0.0.0"
+  serverPort: 16611
+  portType: "endpoint.mllp_server"
+  server: "true"
+  encrypted: "false"
+  supportedInterfaceProfiles:
+    - interfaceDefinitionName: "MLLP"
+      interfaceDefinitionVersion: "v2.x"
+  servicePort: 16611
+  serviceDNS: "aether-mitaf-iie-site-a"
+  connectedSystem:
+    owningOrganizationName: "ACT Health"
+    solutionName: "ACTPAS"
+    subsystemName: "IIE"
+    subsystemVersion: "1.5.0"
+    externalisedServiceName: "actpas-iie"
+    externalisedServiceEndpointName: "unknown"

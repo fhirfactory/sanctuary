@@ -1,2 +1,20 @@
 
 .DS_Store
+
+.project
+
+.settings/
+
+hestia/audit/im/.classpath
+
+itops/im/.classpath
+
+mitaf/imaging/.classpath
+
+mitaf/pas/.classpath
+
+mitaf/pathology/.classpath
+
+ponos/im/.classpath
+
+deployment/configfiles/.classpath
