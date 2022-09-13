@@ -11,7 +11,7 @@
     <!--***********************************************************************************-->
 
     <parent>
-        <groupId>net.fhirfactory.pegacorn</groupId>
+        <groupId>net.fhirfactory.dricats</groupId>
         <artifactId>sanctuary-deployment</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>

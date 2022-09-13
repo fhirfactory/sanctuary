@@ -5,7 +5,7 @@
 
 	<!-- Based on https://github.com/camelinaction/camelinaction2/blob/master/pom.xml -->
 	<parent>
-		<groupId>net.fhirfactory.pegacorn</groupId>
+		<groupId>net.fhirfactory.dricats</groupId>
 		<artifactId>sanctuary-hestia-audit</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>

@@ -10,7 +10,7 @@
     <!--***********************************************************************************-->
 
     <parent>
-        <groupId>net.fhirfactory.pegacorn</groupId>
+        <groupId>net.fhirfactory.dricats</groupId>
         <artifactId>sanctuary-itops</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -161,32 +161,32 @@
         </dependency>
 
         <!--*******************************************************************************-->
-        <!-- AETHER (Deployment) Components                                                -->
+        <!-- Sanctuary (Deployment) Components                                                -->
         <!--*******************************************************************************-->
 
         <dependency>
-            <groupId>net.fhirfactory.pegacorn</groupId>
+            <groupId>net.fhirfactory.dricats</groupId>
             <artifactId>sanctuary-deployment-datasets</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
 
         <dependency>
-            <groupId>net.fhirfactory.pegacorn</groupId>
+            <groupId>net.fhirfactory.dricats</groupId>
             <artifactId>sanctuary-deployment-properties</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
 
         <dependency>
-            <groupId>net.fhirfactory.pegacorn</groupId>
+            <groupId>net.fhirfactory.dricats</groupId>
             <artifactId>sanctuary-deployment-topology</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
 
         <!--*******************************************************************************-->
-        <!-- Pegacorn (Platform) Libraries                                                 -->
+        <!-- DRICaTS (Platform) Libraries                                                 -->
         <!--*******************************************************************************-->
 
         <dependency>
@@ -198,7 +198,7 @@
         </dependency>
 
         <!--*******************************************************************************-->
-        <!-- Pegacorn (Deployment) Libraries                                               -->
+        <!-- DRICaTS (Deployment) Libraries                                               -->
         <!--*******************************************************************************-->
 
         <dependency>
@@ -225,7 +225,7 @@
         </dependency>
 
         <!--*******************************************************************************-->
-        <!-- Pegacorn (Petasos) Libraries                                                  -->
+        <!-- DRICaTS (Petasos) Libraries                                                  -->
         <!--*******************************************************************************-->
 
         <dependency>
@@ -244,13 +244,13 @@
             <scope>compile</scope>
         </dependency>
 
-        <dependency>
+        <!-- <dependency>
             <groupId>net.fhirfactory.pegacorn</groupId>
             <artifactId>pegacorn-buildingblocks-petasos-oam</artifactId>
             <version>${version-net.fhirfactory.pegacorn}</version>
             <type>jar</type>
             <scope>compile</scope>
-        </dependency>
+        </dependency> -->
 
         <dependency>
             <groupId>net.fhirfactory.pegacorn</groupId>
@@ -261,7 +261,7 @@
         </dependency>
 
         <!--*******************************************************************************-->
-        <!-- Pegacorn (FHIR) Libraries                                                     -->
+        <!-- DRICaTS (FHIR) Libraries                                                     -->
         <!--*******************************************************************************-->
 
         <dependency>
@@ -273,7 +273,7 @@
         </dependency>
 
         <!--*******************************************************************************-->
-        <!-- Pegacorn (BuildingBlock) Edge Libraries                                       -->
+        <!-- DRICaTS (BuildingBlock) Edge Libraries                                       -->
         <!--*******************************************************************************-->
 
         <dependency>
@@ -301,7 +301,7 @@
         </dependency>
 
         <!--*******************************************************************************-->
-        <!-- Pegacorn (BuildingBlock) Endpoints Libraries                                  -->
+        <!-- DRICaTS (BuildingBlock) Endpoints Libraries                                  -->
         <!--*******************************************************************************-->
 
         <dependency>
@@ -313,7 +313,7 @@
         </dependency>
 
         <!--*******************************************************************************-->
-        <!-- Pegacorn (BuildingBlock) Archetypes                                           -->
+        <!-- DRICaTS (BuildingBlock) Archetypes                                           -->
         <!--*******************************************************************************-->
 
         <dependency>
@@ -338,7 +338,7 @@
         </dependency>
 
         <!--*******************************************************************************-->
-        <!-- Pegacorn BuildingBlocks Audit Service Libraries                               -->
+        <!-- DRICaTS BuildingBlocks Audit Service Libraries                               -->
         <!--*******************************************************************************-->
 
         <dependency>
@@ -356,18 +356,18 @@
         </dependency>
 
         <!--*******************************************************************************-->
-        <!-- Pegacorn BuildingBlocks OAM Service Libraries                                 -->
+        <!-- DRICaTS BuildingBlocks OAM Service Libraries                                 -->
         <!--*******************************************************************************-->
 
-        <dependency>
+        <!-- <dependency>
             <groupId>net.fhirfactory.pegacorn</groupId>
             <artifactId>pegacorn-buildingblocks-oam-common</artifactId>
             <version>${version-net.fhirfactory.pegacorn}</version>
             <scope>compile</scope>
-        </dependency>
+        </dependency> -->
 
         <!--*******************************************************************************-->
-        <!-- Pegacorn Interception Service Libraries                                       -->
+        <!-- DRICaTS Interception Service Libraries                                       -->
         <!--*******************************************************************************-->
 
         <dependency>
@@ -385,7 +385,7 @@
         </dependency>
 
         <!--*******************************************************************************-->
-        <!-- Pegacorn Tasking Service Libraries                                            -->
+        <!-- DRICaTS Tasking Service Libraries                                            -->
         <!--*******************************************************************************-->
 
         <dependency>
@@ -403,7 +403,7 @@
         </dependency>
 
         <!--*******************************************************************************-->
-        <!-- Pegacorn ITOps IM  Archetypes                                          -->
+        <!-- DRICaTS ITOps IM  Archetypes                                          -->
         <!--*******************************************************************************-->
 
         <dependency>

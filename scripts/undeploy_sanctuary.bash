@@ -1,0 +1,17 @@
+microk8s.helm3 delete aether-petasos-interzonerepeater-one --namespace site-a
+microk8s.helm3 delete aether-petasos-interzonerepeater-two --namespace site-a
+microk8s.helm3 delete aether-hestia-audit-im --namespace site-a
+microk8s.helm3 delete aether-itops-im --namespace site-a
+microk8s.helm3 delete aether-ponos-manager --namespace site-a
+microk8s.helm3 delete aether-mitaf-iie --namespace site-a
+microk8s.helm3 delete aether-mitaf-kestral --namespace site-a
+microk8s.helm3 delete aether-mitaf-sunquest --namespace site-a
+microk8s.helm3 delete aether-mitaf-pathologyreferencelab-laverty --namespace site-a
+microk8s.helm3 delete aether-mitaf-pathologyreferencelab-capital --namespace site-a
+microk8s.helm3 delete aether-mitaf-bridges --namespace site-a
+microk8s.helm3 delete aether-mitaf-endobase --namespace site-a
+microk8s.helm3 delete aether-mitaf-aria --namespace site-a
+microk8s.helm3 delete aether-mitaf-hips --namespace site-a
+microk8s.helm3 delete aether-ladon-im --namespace site-a
+microk8s.helm3 delete aether-fhirbreak-email --namespace site-a
+microk8s.helm3 delete aether-fhirbreak-modica --namespace site-a
