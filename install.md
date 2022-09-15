@@ -54,8 +54,19 @@ You can see whether the modules are running by executing:
 
 ## kubernetes configuration
 
-create/assign a default "storage" location for _Sanctuary_
+create/assign a default "storage" location for _Sanctuary_, noting that this directory
+will need to have read/write/execute privileges for _microk8s_ and _docker_ as well as you.
 
-export SANCTUARY_STORAGE_BASE=path/to/location
+    mkdir -p /path/to/storage/root
+
+    set SANCTUARY_STORAGE_ROOT=/path/to/storage/root
+
+    chown -R $(username):docker /path/to/storage/root
+
+Now, execture the script:
+
+    ./scripts/setup_kubernetes_storage.sh
+
+
 
 

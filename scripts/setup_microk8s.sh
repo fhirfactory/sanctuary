@@ -7,3 +7,9 @@ microk8s enable dashboard
 microk8s enable rbac
 microk8s enable helm3
 
+
+# Pushing to the insecure registry may fail in some versions of Docker unless the daemon is explicitly
+# configured to trust this registry (https://microk8s.io/docs/registry-built-in).
+
+sudo cp ./files/daemon.json /etc/docker/
+sudo systemctl restart docker
